@@ -1,5 +1,7 @@
 To Run:
- Please run "./run.sh" in your terminal
+    Please run "./run.sh" in your terminal to make a request for "AAPL" 
+Or:
+    Compile manually without the .sh file and specify you own stock to request information for.
 
 Note: The current implementation supports two API command types: api_command_type::BalanceSheet and api_command_type::CashFlow. This framework serves as a robust template designed for scalability. It can easily accommodate an expanding range of command types as needed in future developments. At this stage of my honors project, the balance sheet and cash flow formatters are in preliminary phases of development. The specific formatting details for these components are yet to be finalized due to the yet to be determined format/data required for my honours project. 
 
