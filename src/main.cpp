@@ -9,8 +9,14 @@
 #include "../include/formatter_factory.h"
 #include "../include/response_manager.h"
 
-static std::string YAML_FILE_PATH = "api_config.YAML";
-static std::string SAVE_FILE_NAME = "test.csv";
+// YAML config file location
+const std::string YAML_FILE_PATH = "api_config.YAML";
+
+// Save file location
+const std::string SAVE_FILE_NAME = "test.csv";
+
+// Api command type
+const api_command_type REQUESTED_API_COMMAND_TYPE = api_command_type::BalanceSheet;
 
 int main(int argc, char* argv[]) {
   if (argc < 3) {
@@ -21,7 +27,7 @@ int main(int argc, char* argv[]) {
   // Command line inputs
   std::string ticker = argv[1];
   std::string api_key = argv[2];
-  api_command_type requested_api_command_type = api_command_type::BalanceSheet;
+
 
   // Test queries
   std::vector<std::pair<std::string, std::string>> queries = {
@@ -29,14 +35,14 @@ int main(int argc, char* argv[]) {
 
   // Create and execute command
   std::unique_ptr<ApiCommand> curr = std::make_unique<ApiCommand>(
-      ticker, api_key, queries, YAML_FILE_PATH, requested_api_command_type);
+      ticker, api_key, queries, YAML_FILE_PATH, REQUESTED_API_COMMAND_TYPE);
   nlohmann::json response = curr->execute();
 
   // Creating data formatter designed to format data depending on the use, note
   // this is where my development on this is going to halt as I am yet to
   // determine which format I wish to have for my project.
   auto formatter =
-      FormatterFactory::createFormatter(requested_api_command_type);
+      FormatterFactory::createFormatter(REQUESTED_API_COMMAND_TYPE);
 
   // Creating data saver to save data
   auto saver = std::make_unique<DataSaver>();
