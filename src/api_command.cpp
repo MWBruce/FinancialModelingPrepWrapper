@@ -1,5 +1,6 @@
 #include "../include/api_command.h"
 
+// API Endpoints map which returns the appropriate api name for the api command type entered
 std::unordered_map<api_command_type, std::string> ApiCommand::API_ENDPOINTS = {
     {api_command_type::BalanceSheet, "/balance-sheet-statement/{ticker}"},
     {api_command_type::CashFlow, "/cash-flow-statement/{ticker}"}

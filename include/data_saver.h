@@ -2,6 +2,7 @@
 #define DATA_SAVER_H
 
 #include <string>
+#include <fstream>
 
 #include "interface_response_formatter.h"
 
