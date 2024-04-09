@@ -1,0 +1,8 @@
+API Key:
+    Obtain your own API key from FinancialModelingPrep.
+    Place this API key in a file named API_KEY.txt located in the project root directory.
+
+Required Libraries:
+    nlohmann/json: A JSON library for modern C++.
+    yaml-cpp: A YAML parser and emitter for C++. 
+    libcurl: A library for transferring data with URL syntax, crucial for handling API calls.

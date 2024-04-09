@@ -1,0 +1,186 @@
+openapi: 3.0.0
+info:
+  title: Financial Modeling Prep API
+  version: "v3"
+servers:
+  - url: https://financialmodelingprep.com/api/v3
+paths:
+  /balance-sheet-statement/{ticker}:
+    get:
+      summary: Get Balance Sheet Statement
+      parameters:
+        - in: path
+          name: ticker
+          required: true
+          schema:
+            type: string
+          description: Ticker symbol of the company
+        - in: query
+          name: period
+          schema:
+            type: string
+            enum: [annual, quarter]
+          description: Period of the statement
+        - in: query
+          name: datatype
+          schema:
+            type: string
+          description: Type of the data format, e.g., csv
+        - in: query
+          name: limit
+          schema:
+            type: number
+          description: Limit for the number of results
+        - in: query
+          name: apikey
+          required: true
+          schema:
+            type: string
+          description: API key for authorization
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  date: { type: "string" }
+                  symbol: { type: "string" }
+                  reportedCurrency: { type: "string" }
+                  cik: { type: "string" }
+                  fillingDate: { type: "string" }
+                  acceptedDate: { type: "string" }
+                  calendarYear: { type: "string" }
+                  period: { type: "string" }
+                  cashAndCashEquivalents: { type: "number" }
+                  shortTermInvestments: { type: "number" }
+                  cashAndShortTermInvestments: { type: "number" }
+                  netReceivables: { type: "number" }
+                  inventory: { type: "number" }
+                  otherCurrentAssets: { type: "number" }
+                  totalCurrentAssets: { type: "number" }
+                  propertyPlantEquipmentNet: { type: "number" }
+                  goodwill: { type: "number" }
+                  intangibleAssets: { type: "number" }
+                  goodwillAndIntangibleAssets: { type: "number" }
+                  longTermInvestments: { type: "number" }
+                  taxAssets: { type: "number" }
+                  otherNonCurrentAssets: { type: "number" }
+                  totalNonCurrentAssets: { type: "number" }
+                  otherAssets: { type: "number" }
+                  totalAssets: { type: "number" }
+                  accountPayables: { type: "number" }
+                  shortTermDebt: { type: "number" }
+                  taxPayables: { type: "number" }
+                  deferredRevenue: { type: "number" }
+                  otherCurrentLiabilities: { type: "number" }
+                  totalCurrentLiabilities: { type: "number" }
+                  longTermDebt: { type: "number" }
+                  deferredRevenueNonCurrent: { type: "number" }
+                  deferredTaxLiabilitiesNonCurrent: { type: "number" }
+                  otherNonCurrentLiabilities: { type: "number" }
+                  totalNonCurrentLiabilities: { type: "number" }
+                  otherLiabilities: { type: "number" }
+                  capitalLeaseObligations: { type: "number" }
+                  totalLiabilities: { type: "number" }
+                  preferredStock: { type: "number" }
+                  commonStock: { type: "number" }
+                  retainedEarnings: { type: "number" }
+                  accumulatedOtherComprehensiveIncomeLoss: { type: "number" }
+                  othertotalStockholdersEquity: { type: "number" }
+                  totalStockholdersEquity: { type: "number" }
+                  totalEquity: { type: "number" }
+                  totalLiabilitiesAndStockholdersEquity: { type: "number" }
+                  minorityInterest: { type: "number" }
+                  totalLiabilitiesAndTotalEquity: { type: "number" }
+                  totalInvestments: { type: "number" }
+                  totalDebt: { type: "number" }
+                  netDebt: { type: "number" }
+                  link: { type: "string", format: "uri" }
+                  finalLink: { type: "string", format: "uri" }
+                additionalProperties: false
+
+  /cash-flow-statement/{ticker}:
+    get:
+      summary: Get Cash Flow Statement
+      parameters:
+        - in: path
+          name: ticker
+          required: true
+          schema:
+            type: string
+          description: Ticker symbol of the company
+        - in: query
+          name: period
+          schema:
+            type: string
+            default: quarter
+          description: Period of the statement (e.g., annual, quarter)
+        - in: query
+          name: datatype
+          schema:
+            type: string
+          description: Type of the data format (e.g., csv)
+        - in: query
+          name: limit
+          schema:
+            type: number
+          description: Limit for the number of results
+        - in: query
+          name: apikey
+          required: true
+          schema:
+            type: string
+          description: API key for authorization
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    acceptedDate: { type: "string" }
+                    accountsPayables: { type: "number" }
+                    accountsReceivables: { type: "number" }
+                    acquisitionsNet: { type: "number" }
+                    calendarYear: { type: "string" }
+                    capitalExpenditure: { type: "number" }
+                    cashAtBeginningOfPeriod: { type: "number" }
+                    cashAtEndOfPeriod: { type: "number" }
+                    changeInWorkingCapital: { type: "number" }
+                    cik: { type: "string" }
+                    commonStockIssued: { type: "number" }
+                    commonStockRepurchased: { type: "number" }
+                    date: { type: "string" }
+                    debtRepayment: { type: "number" }
+                    deferredIncomeTax: { type: "number" }
+                    depreciationAndAmortization: { type: "number" }
+                    dividendsPaid: { type: "number" }
+                    effectOfForexChangesOnCash: { type: "number" }
+                    fillingDate: { type: "string" }
+                    finalLink: { type: "string", format: "uri" }
+                    freeCashFlow: { type: "number" }
+                    inventory: { type: "number" }
+                    investmentsInPropertyPlantAndEquipment: { type: "number" }
+                    link: { type: "string", format: "uri" }
+                    netCashProvidedByOperatingActivities: { type: "number" }
+                    netCashUsedForInvestingActivites: { type: "number" }
+                    netCashUsedProvidedByFinancingActivities: { type: "number" }
+                    netChangeInCash: { type: "number" }
+                    netIncome: { type: "number" }
+                    operatingCashFlow: { type: "number" }
+                    otherFinancingActivites: { type: "number" }
+                    otherInvestingActivites: { type: "number" }
+                    otherNonCashItems: { type: "number" }
+                    otherWorkingCapital: { type: "number" }
+                    period: { type: "string" }
+                    purchasesOfInvestments: { type: "number" }
+                    reportedCurrency: { type: "string" }
+                    salesMaturitiesOfInvestments: { type: "number" }
+                    stockBasedCompensation: { type: "number" }
+                    symbol: { type: "string" }
+                  additionalProperties: true
