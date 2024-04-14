@@ -30,9 +30,9 @@ int main(int argc, char* argv[]) {
 
 
   // Test queries (planning to make this aspect more object based as when I initially coded this I assumed the calls made to the API would be more similar than they actually are)
-  // Probably going to have a queries object contained by the API command that does a better job at maintaining compulsory and optional commands although I dont think this will be a difficult change Ill implement it later.
+  // Probably going to have a queries object contained by the API command that does a better job at maintaining compulsory and optional commands although I dont think this will be a difficult change I will implement it later.
   std::vector<std::pair<std::string, std::string>> queries = {
-      {"type", "sma"},{"period", "10"}, {"RandomWrongQueryTest", "hi"}};
+      {"type", "ema"},{"period", "10"}, {"timeframe", "1hour"}, {"RandomWrongQueryTest", "hi"}};
 
   // Create and execute command
   std::unique_ptr<ApiCommand> curr = std::make_unique<ApiCommand>(

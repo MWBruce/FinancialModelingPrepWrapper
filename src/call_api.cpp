@@ -18,7 +18,7 @@ nlohmann::json CallApi::makeApiCall(const ApiEndpoint& endpoint,
 
   // Handling interval parameter
   auto queryParams = endpoint.getQueryParams();
-  std::string intervalValue = "5min";  // Default value
+  std::string intervalValue = "1day";  // Default value
   if (intervalPos != std::string::npos) {
     if (queryParams.find("timeframe") != queryParams.end()) {
       intervalValue = queryParams["timeframe"];
