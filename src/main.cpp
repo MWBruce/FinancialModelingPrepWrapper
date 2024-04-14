@@ -16,7 +16,7 @@ const std::string YAML_FILE_PATH = "api_config.YAML";
 const std::string SAVE_FILE_NAME = "test.csv";
 
 // Api command type
-const api_command_type REQUESTED_API_COMMAND_TYPE = api_command_type::Profile;
+const api_command_type REQUESTED_API_COMMAND_TYPE = api_command_type::TechnicalIndicator;
 
 int main(int argc, char* argv[]) {
   if (argc < 3) {
@@ -29,9 +29,10 @@ int main(int argc, char* argv[]) {
   std::string api_key = argv[2];
 
 
-  // Test queries (could probably make these their own object but probably not necessary at the moment)
+  // Test queries (planning to make this aspect more object based as when I initially coded this I assumed the calls made to the API would be more similar than they actually are)
+  // Probably going to have a queries object contained by the API command that does a better job at maintaining compulsory and optional commands although I dont think this will be a difficult change Ill implement it later.
   std::vector<std::pair<std::string, std::string>> queries = {
-      {"period", "annual"}, {"limit", "1"}, {"RandomWrongQueryTest", "hi"}};
+      {"type", "sma"},{"period", "10"}, {"RandomWrongQueryTest", "hi"}};
 
   // Create and execute command
   std::unique_ptr<ApiCommand> curr = std::make_unique<ApiCommand>(

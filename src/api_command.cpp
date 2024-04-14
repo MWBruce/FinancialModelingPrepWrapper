@@ -8,6 +8,7 @@ std::unordered_map<api_command_type, std::string> ApiCommand::API_ENDPOINTS = {
     {api_command_type::DCF, "/discounted-cash-flow/{ticker}"},
     {api_command_type::HistoricalDividends, "/historical-price-full/stock_dividend/{ticker}"},
     {api_command_type::Profile, "/profile/{ticker}"},
+    {api_command_type::TechnicalIndicator, "/technical_indicator/{timeframe}/{ticker}"},
 };
 
 // Constructor

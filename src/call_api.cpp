@@ -9,25 +9,39 @@ nlohmann::json CallApi::makeApiCall(const ApiEndpoint& endpoint,
 
   std::string url = endpoint.getUrl();
   size_t tickerPos = url.find("{ticker}");
+  size_t intervalPos = url.find("{timeframe}");
 
-  // Replacing ticker place holder with user requested ticker
+  // Replace ticker placeholder with the requested ticker
   if (tickerPos != std::string::npos) {
     url.replace(tickerPos, std::string("{ticker}").length(), ticker);
   }
 
-  // Getting query params and appending to url
+  // Handling interval parameter
   auto queryParams = endpoint.getQueryParams();
+  std::string intervalValue = "5min";  // Default value
+  if (intervalPos != std::string::npos) {
+    if (queryParams.find("timeframe") != queryParams.end()) {
+      intervalValue = queryParams["timeframe"];
+    }
+    url.replace(intervalPos, std::string("{timeframe}").length(), intervalValue);
+  }
+
+  // Getting query params and appending to url
   bool isFirstQueryParam = (url.find('?') == std::string::npos);
   for (const auto& param : queryParams) {
-    url += (isFirstQueryParam ? "?" : "&") + param.first + "=" + param.second;
-    isFirstQueryParam = false;
+    // Append only if the parameter is not 'interval' as it's already handled
+    if (param.first != "timeframe") {
+      url += (isFirstQueryParam ? "?" : "&") + param.first + "=" + param.second;
+      isFirstQueryParam = false;
+    }
   }
+
 
   // Appending apikey
   url += (isFirstQueryParam ? "?apikey=" : "&apikey=") + api_key;
 
   // Printing out URL for checking
-  // std::cout << "Request URL: " << url << std::endl;
+  std::cout << "Request URL: " << url << std::endl;
 
   // Making curl request
   curl = curl_easy_init();

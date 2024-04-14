@@ -417,3 +417,70 @@ paths:
                   isAdr: { type: "boolean" }
                   isFund: { type: "boolean" }
                 additionalProperties: false
+  /technical_indicator/{timeframe}/{ticker}:
+    get:
+      summary: Get Technical Indicators for a Stock
+      description: Retrieves technical indicators for a given stock symbol over specified timeframes.
+      parameters:
+        - in: path
+          name: timeframe
+          required: true
+          schema:
+            type: string
+            enum: [1min, 5min, 15min, 30min, 1hour, 4hour, 1day]
+          description: Timeframe for which the data is requested
+        - in: path
+          name: ticker
+          required: true
+          schema:
+            type: string
+          description: Ticker symbol of the stock
+        - in: query
+          name: type
+          required: true
+          schema:
+            type: string
+            enum: [sma, ema, wma, dema, tema, williams, rsi, adx, standarddeviation]
+          description: Type of technical indicator
+        - in: query
+          name: period
+          required: true
+          schema:
+            type: integer
+          description: Period count for the technical indicator, specifies how many data points to calculate
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+          description: Start date for the data range (optional)
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+          description: End date for the data range (optional)
+        - in: query
+          name: apikey
+          required: true
+          schema:
+            type: string
+          description: API key for authorization
+      responses:
+        '200':
+          description: Successful retrieval of technical indicators
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    date: { type: "string" }
+                    open: { type: "number" }
+                    high: { type: "number" }
+                    low: { type: "number" }
+                    close: { type: "number" }
+                    volume: { type: "number" }
+                    sma: { type: "number" }
+                  additionalProperties: false
