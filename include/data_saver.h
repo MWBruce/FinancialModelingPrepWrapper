@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 
-#include "interface_response_formatter.h"
+#include "response_formatter.h"
 
 // Object designed to save data to specified file name
 class DataSaver {

@@ -21,8 +21,8 @@ api_command -
 
 formatter_factory - 
     A factory class responsible for creating instances of response formatters based on the specified command type. 
-interface_response_formatter - 
-    An abstract class that defines the structure for response formatters.
+response_formatter - 
+    An class that defines a default formatter
 response_formatters - 
     A series of formatters (currently only balancesheet and cashflow) which inherit from the formatter interface to manage various api responses. As there might be over 100 different API calls I might change the file arrangement relating to these formatters.
 data_saver - 
@@ -34,5 +34,5 @@ response_manager -
 Adding New API Endpoints:
 1. Modify the YAML file to include the new API endpoint (Ensuringing it adheres to OpenAPI format).
 2. In the ApiCommand class, add a new api_command_type enum and associate it with the corresponding API endpoint name in the API_ENDPOINTS mapping. This mapping is used to link API command types with their respective endpoint URLs.
-3. Should you require a unique formatter you may build one or you can use an existing one. 
+3. Should you require a unique formatter you may build one or you can use an existing one such as the default. 
 4. If you intend to test the new API endpoint using the main function, adjust the initial api_command_type constant to match your new api_command_type. This will allow you to execute and validate the new endpoint directly from the main program.

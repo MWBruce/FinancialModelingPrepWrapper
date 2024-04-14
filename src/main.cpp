@@ -16,7 +16,7 @@ const std::string YAML_FILE_PATH = "api_config.YAML";
 const std::string SAVE_FILE_NAME = "test.csv";
 
 // Api command type
-const api_command_type REQUESTED_API_COMMAND_TYPE = api_command_type::BalanceSheet;
+const api_command_type REQUESTED_API_COMMAND_TYPE = api_command_type::KeyMetrics;
 
 int main(int argc, char* argv[]) {
   if (argc < 3) {

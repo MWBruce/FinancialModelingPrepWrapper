@@ -5,12 +5,12 @@
 #include <nlohmann/json.hpp>
 
 #include "data_saver.h"
-#include "interface_response_formatter.h"
+#include "response_formatter.h"
 
 class ResponseManager {
  public:
   // Constructor
-  ResponseManager(std::unique_ptr<InterfaceResponseFormatter> formatter,
+  ResponseManager(std::unique_ptr<ResponseFormatter> formatter,
                   std::unique_ptr<DataSaver> saver);
 
   // Function to handle json response data
@@ -19,7 +19,7 @@ class ResponseManager {
 
  private:
   // Private variables (the formatter and saver that the class encapsulates)
-  std::unique_ptr<InterfaceResponseFormatter> formatter;
+  std::unique_ptr<ResponseFormatter> formatter;
   std::unique_ptr<DataSaver> saver;
 };
 

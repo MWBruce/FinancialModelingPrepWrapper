@@ -184,3 +184,103 @@ paths:
                     stockBasedCompensation: { type: "number" }
                     symbol: { type: "string" }
                   additionalProperties: true
+  /key-metrics/{ticker}:
+    get:
+      summary: Get Key Metrics for a Company
+      description: Retrieve the key financial metrics for a specified company based on the ticker symbol.
+      parameters:
+        - in: path
+          name: ticker
+          required: true
+          schema:
+            type: string
+          description: Ticker symbol of the company
+        - in: query
+          name: period
+          schema:
+            type: string
+            enum: [annual, quarter]
+          description: Period of the metrics data
+        - in: query
+          name: limit
+          schema:
+            type: number
+          description: Limit the number of results returned
+        - in: query
+          name: apikey
+          required: true
+          schema:
+            type: string
+          description: API key for authorization
+      responses:
+        '200':
+          description: Successful retrieval of key metrics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    ticker: { type: "string" }
+                    date: { type: "string" }
+                    calendarYear: { type: "string" }
+                    period: { type: "string" }
+                    revenuePerShare: { type: "number" }
+                    netIncomePerShare: { type: "number" }
+                    operatingCashFlowPerShare: { type: "number" }
+                    freeCashFlowPerShare: { type: "number" }
+                    cashPerShare: { type: "number" }
+                    bookValuePerShare: { type: "number" }
+                    tangibleBookValuePerShare: { type: "number" }
+                    shareholdersEquityPerShare: { type: "number" }
+                    interestDebtPerShare: { type: "number" }
+                    marketCap: { type: "number" }
+                    enterpriseValue: { type: "number" }
+                    peRatio: { type: "number" }
+                    priceToSalesRatio: { type: "number" }
+                    pocfratio: { type: "number" }
+                    pfcfRatio: { type: "number" }
+                    pbRatio: { type: "number" }
+                    ptbRatio: { type: "number" }
+                    evToSales: { type: "number" }
+                    enterpriseValueOverEBITDA: { type: "number" }
+                    evToOperatingCashFlow: { type: "number" }
+                    evToFreeCashFlow: { type: "number" }
+                    earningsYield: { type: "number" }
+                    freeCashFlowYield: { type: "number" }
+                    debtToEquity: { type: "number" }
+                    debtToAssets: { type: "number" }
+                    netDebtToEBITDA: { type: "number" }
+                    currentRatio: { type: "number" }
+                    interestCoverage: { type: "number" }
+                    incomeQuality: { type: "number" }
+                    dividendYield: { type: "number" }
+                    payoutRatio: { type: "number" }
+                    salesGeneralAndAdministrativeToRevenue: { type: "number" }
+                    researchAndDevelopmentToRevenue: { type: "number" }
+                    intangiblesToTotalAssets: { type: "number" }
+                    capexToOperatingCashFlow: { type: "number" }
+                    capexToRevenue: { type: "number" }
+                    capexToDepreciation: { type: "number" }
+                    stockBasedCompensationToRevenue: { type: "number" }
+                    grahamNumber: { type: "number" }
+                    roic: { type: "number" }
+                    returnOnTangibleAssets: { type: "number" }
+                    grahamNetNet: { type: "number" }
+                    workingCapital: { type: "number" }
+                    tangibleAssetValue: { type: "number" }
+                    netCurrentAssetValue: { type: "number" }
+                    investedCapital: { type: "number" }
+                    averageReceivables: { type: "number" }
+                    averagePayables: { type: "number" }
+                    averageInventory: { type: "number" }
+                    daysSalesOutstanding: { type: "number" }
+                    daysPayablesOutstanding: { type: "number" }
+                    daysOfInventoryOnHand: { type: "number" }
+                    receivablesTurnover: { type: "number" }
+                    payablesTurnover: { type: "number" }
+                    inventoryTurnover: { type: "number" }
+                    roe: { type: "number" }
+                    capexPerShare: { type: "number" }
+                  additionalProperties: false

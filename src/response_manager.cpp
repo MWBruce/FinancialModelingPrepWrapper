@@ -2,7 +2,7 @@
 
 // Constructor recieves in formatter and saver to handle response
 ResponseManager::ResponseManager(
-    std::unique_ptr<InterfaceResponseFormatter> formatter,
+    std::unique_ptr<ResponseFormatter> formatter,
     std::unique_ptr<DataSaver> saver)
     : formatter(std::move(formatter)), saver(std::move(saver)) {}
 
