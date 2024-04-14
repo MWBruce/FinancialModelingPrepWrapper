@@ -484,3 +484,161 @@ paths:
                     volume: { type: "number" }
                     sma: { type: "number" }
                   additionalProperties: false
+  /historical-price-full/{ticker}:
+    get:
+      summary: Get Historical Daily Prices for a Company
+      description: Retrieves daily historical prices for a given company's stock, including opening, high, low, and closing prices. Allows filtering by date range and series type.
+      parameters:
+        - in: path
+          name: ticker
+          required: true
+          schema:
+            type: string
+          description: Ticker symbol of the stock for which historical data is required
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+          description: Start date for filtering historical data (optional)
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+          description: End date for filtering historical data (optional)
+        - in: query
+          name: serietype
+          schema:
+            type: string
+            default: line
+          description: Type of data series to retrieve, e.g., 'line' (optional)
+        - in: query
+          name: apikey
+          required: true
+          schema:
+            type: string
+          description: API key for authorization
+      responses:
+        '200':
+          description: Successful retrieval of historical prices
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  symbol: { type: "string" }
+                  historical:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date: { type: "string" }
+                        open: { type: "number" }
+                        high: { type: "number" }
+                        low: { type: "number" }
+                        close: { type: "number" }
+                        adjClose: { type: "number" }
+                        volume: { type: "number" }
+                        unadjustedVolume: { type: "number" }
+                        change: { type: "number" }
+                        changePercent: { type: "number" }
+                        vwap: { type: "number" }
+                        label: { type: "string" }
+                        changeOverTime: { type: "number" }
+  /ratios/{ticker}:
+    get:
+      summary: Get Financial Ratios for a Company
+      description: Retrieves financial ratios for a specified company based on the ticker symbol, such as P/B ratio, ROE, and many others, which help assess the company's financial health and compare it to its competitors.
+      parameters:
+        - in: path
+          name: ticker
+          required: true
+          schema:
+            type: string
+          description: Ticker symbol of the company for which financial ratios are required
+        - in: query
+          name: period
+          schema:
+            type: string
+            enum: [annual, quarter]
+          description: Specifies whether to fetch annual or quarterly financial ratios
+        - in: query
+          name: limit
+          schema:
+            type: number
+          description: Limit the number of historical entries returned, with a maximum span of 5 years
+        - in: query
+          name: apikey
+          required: true
+          schema:
+            type: string
+          description: API key for authorization
+      responses:
+        '200':
+          description: Successful retrieval of financial ratios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    symbol: { type: "string" }
+                    date: { type: "string" }
+                    calendarYear: { type: "string" }
+                    period: { type: "string" }
+                    currentRatio: { type: "number" }
+                    quickRatio: { type: "number" }
+                    cashRatio: { type: "number" }
+                    daysOfSalesOutstanding: { type: "number" }
+                    daysOfInventoryOutstanding: { type: "number" }
+                    operatingCycle: { type: "number" }
+                    daysOfPayablesOutstanding: { type: "number" }
+                    cashConversionCycle: { type: "number" }
+                    grossProfitMargin: { type: "number" }
+                    operatingProfitMargin: { type: "number" }
+                    pretaxProfitMargin: { type: "number" }
+                    netProfitMargin: { type: "number" }
+                    effectiveTaxRate: { type: "number" }
+                    returnOnAssets: { type: "number" }
+                    returnOnEquity: { type: "number" }
+                    returnOnCapitalEmployed: { type: "number" }
+                    netIncomePerEBT: { type: "number" }
+                    ebtPerEbit: { type: "number" }
+                    ebitPerRevenue: { type: "number" }
+                    debtRatio: { type: "number" }
+                    debtEquityRatio: { type: "number" }
+                    longTermDebtToCapitalization: { type: "number" }
+                    totalDebtToCapitalization: { type: "number" }
+                    interestCoverage: { type: "number" }
+                    cashFlowToDebtRatio: { type: "number" }
+                    companyEquityMultiplier: { type: "number" }
+                    receivablesTurnover: { type: "number" }
+                    payablesTurnover: { type: "number" }
+                    inventoryTurnover: { type: "number" }
+                    fixedAssetTurnover: { type: "number" }
+                    assetTurnover: { type: "number" }
+                    operatingCashFlowPerShare: { type: "number" }
+                    freeCashFlowPerShare: { type: "number" }
+                    cashPerShare: { type: "number" }
+                    payoutRatio: { type: "number" }
+                    operatingCashFlowSalesRatio: { type: "number" }
+                    freeCashFlowOperatingCashFlowRatio: { type: "number" }
+                    cashFlowCoverageRatios: { type: "number" }
+                    shortTermCoverageRatios: { type: "number" }
+                    capitalExpenditureCoverageRatio: { type: "number" }
+                    dividendPaidAndCapexCoverageRatio: { type: "number" }
+                    dividendPayoutRatio: { type: "number" }
+                    priceBookValueRatio: { type: "number" }
+                    priceToBookRatio: { type: "number" }
+                    priceToSalesRatio: { type: "number" }
+                    priceEarningsRatio: { type: "number" }
+                    priceToFreeCashFlowsRatio: { type: "number" }
+                    priceToOperatingCashFlowsRatio: { type: "number" }
+                    priceCashFlowRatio: { type: "number" }
+                    priceEarningsToGrowthRatio: { type: "number" }
+                    priceSalesRatio: { type: "number" }
+                    dividendYield: { type: "number" }
+                    enterpriseValueMultiple: { type: "number" }
+                    priceFairValue: { type: "number" }

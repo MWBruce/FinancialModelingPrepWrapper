@@ -11,7 +11,7 @@
 #include "api_spec_parser.h"
 #include "call_api.h"
 
-enum class api_command_type { CashFlow, BalanceSheet,KeyMetrics, DCF, HistoricalDividends, Profile, TechnicalIndicator };
+enum class api_command_type { CashFlow, BalanceSheet,KeyMetrics, DCF, HistoricalDividends, Profile, TechnicalIndicator, HistoricalPrice,  HistoricalRatios};
 
 // class for api commands
 class ApiCommand {
