@@ -16,7 +16,7 @@ const std::string YAML_FILE_PATH = "api_config.YAML";
 const std::string SAVE_FILE_NAME = "test.csv";
 
 // Api command type
-const api_command_type REQUESTED_API_COMMAND_TYPE = api_command_type::KeyMetrics;
+const api_command_type REQUESTED_API_COMMAND_TYPE = api_command_type::DCF;
 
 int main(int argc, char* argv[]) {
   if (argc < 3) {
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
   std::string api_key = argv[2];
 
 
-  // Test queries
+  // Test queries (could probably make these their own object but probably not necessary at the moment)
   std::vector<std::pair<std::string, std::string>> queries = {
       {"period", "annual"}, {"limit", "1"}, {"RandomWrongQueryTest", "hi"}};
 

@@ -5,6 +5,7 @@ std::unordered_map<api_command_type, std::string> ApiCommand::API_ENDPOINTS = {
     {api_command_type::BalanceSheet, "/balance-sheet-statement/{ticker}"},
     {api_command_type::CashFlow, "/cash-flow-statement/{ticker}"},
     {api_command_type::KeyMetrics, "/key-metrics/{ticker}"},
+    {api_command_type::DCF, "/discounted-cash-flow/{ticker}"},
 };
 
 // Constructor

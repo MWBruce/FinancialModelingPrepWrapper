@@ -284,3 +284,35 @@ paths:
                     roe: { type: "number" }
                     capexPerShare: { type: "number" }
                   additionalProperties: false
+  /discounted-cash-flow/{ticker}:
+    get:
+      summary: Get Discounted Cash Flow Valuation
+      description: Retrieve the discounted cash flow (DCF) valuation for a company, a method to estimate the value of an investment based on its expected future cash flows. The valuation uses the specified stock ticker to return the DCF and current stock price.
+      parameters:
+        - in: path
+          name: ticker
+          required: true
+          schema:
+            type: string
+          description: Ticker symbol of the company for which to retrieve DCF valuation
+        - in: query
+          name: apikey
+          required: true
+          schema:
+            type: string
+          description: API key for authorization
+      responses:
+        '200':
+          description: Successful retrieval of DCF valuation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    symbol: { type: "string" }
+                    date: { type: "string" }
+                    dcf: { type: "number", format: "float", description: "Discounted cash flow valuation" }
+                    Stock Price: { type: "number", format: "float", description: "Current stock price at the date of valuation" }
+                additionalProperties: false
