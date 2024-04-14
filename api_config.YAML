@@ -283,7 +283,7 @@ paths:
                     inventoryTurnover: { type: "number" }
                     roe: { type: "number" }
                     capexPerShare: { type: "number" }
-                  additionalProperties: false
+                  additionalProperties: true
   /discounted-cash-flow/{ticker}:
     get:
       summary: Get Discounted Cash Flow Valuation
@@ -315,7 +315,7 @@ paths:
                     date: { type: "string" }
                     dcf: { type: "number", format: "float", description: "Discounted cash flow valuation" }
                     Stock Price: { type: "number", format: "float", description: "Current stock price at the date of valuation" }
-                additionalProperties: false
+                additionalProperties: true
   /historical-price-full/stock_dividend/{ticker}:
     get:
       summary: Get Historical Dividend Data for a Stock
@@ -354,4 +354,66 @@ paths:
                         recordDate: { type: "string" }
                         paymentDate: { type: "string" }
                         declarationDate: { type: "string" }
+                additionalProperties: true
+  /profile/{ticker}:
+    get:
+      summary: Get Company Profile
+      description: Retrieve comprehensive profile information for a specified company based on the ticker symbol, including financial data, company description, and other essential details.
+      parameters:
+        - in: path
+          name: ticker
+          required: true
+          schema:
+            type: string
+          description: Ticker symbol of the company
+        - in: query
+          name: apikey
+          required: true
+          schema:
+            type: string
+          description: API key for authorization
+      responses:
+        '200':
+          description: Successful retrieval of company profile
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  symbol: { type: "string" }
+                  price: { type: "number" }
+                  beta: { type: "number" }
+                  volAvg: { type: "number" }
+                  mktCap: { type: "number" }
+                  lastDiv: { type: "number" }
+                  range: { type: "string" }
+                  changes: { type: "number" }
+                  companyName: { type: "string" }
+                  currency: { type: "string" }
+                  cik: { type: "string" }
+                  isin: { type: "string" }
+                  cusip: { type: "string" }
+                  exchange: { type: "string" }
+                  exchangeShortName: { type: "string" }
+                  industry: { type: "string" }
+                  website: { type: "string", format: "uri" }
+                  description: { type: "string" }
+                  ceo: { type: "string" }
+                  sector: { type: "string" }
+                  country: { type: "string" }
+                  fullTimeEmployees: { type: "number" }
+                  phone: { type: "string" }
+                  address: { type: "string" }
+                  city: { type: "string" }
+                  state: { type: "string" }
+                  zip: { type: "string" }
+                  dcfDiff: { type: "number" }
+                  dcf: { type: "number" }
+                  image: { type: "string", format: "uri" }
+                  ipoDate: { type: "string", format: "date" }
+                  defaultImage: { type: "boolean" }
+                  isEtf: { type: "boolean" }
+                  isActivelyTrading: { type: "boolean" }
+                  isAdr: { type: "boolean" }
+                  isFund: { type: "boolean" }
                 additionalProperties: false
