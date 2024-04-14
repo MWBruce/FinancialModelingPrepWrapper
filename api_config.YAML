@@ -316,3 +316,42 @@ paths:
                     dcf: { type: "number", format: "float", description: "Discounted cash flow valuation" }
                     Stock Price: { type: "number", format: "float", description: "Current stock price at the date of valuation" }
                 additionalProperties: false
+  /historical-price-full/stock_dividend/{ticker}:
+    get:
+      summary: Get Historical Dividend Data for a Stock
+      description: Retrieve historical dividend data for a specific stock identified by its ticker symbol.
+      parameters:
+        - in: path
+          name: ticker
+          required: true
+          schema:
+            type: string
+          description: Ticker symbol of the company to retrieve historical dividend data for.
+        - in: query
+          name: apikey
+          required: true
+          schema:
+            type: string
+          description: API key for authorization
+      responses:
+        '200':
+          description: Successful retrieval of historical dividend data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  symbol: { type: "string" }
+                  historical:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date: { type: "string" }
+                        label: { type: "string" }
+                        adjDividend: { type: "number" }
+                        dividend: { type: "number" }
+                        recordDate: { type: "string" }
+                        paymentDate: { type: "string" }
+                        declarationDate: { type: "string" }
+                additionalProperties: false
